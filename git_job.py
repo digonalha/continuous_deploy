@@ -15,7 +15,7 @@ msg = git.pull()
 
 print(msg)
 
-if msg == "Already up to date.":
+if msg != "Already up to date.":
     with open(f"{repo_dir}\\output.log", "w") as output:
         subprocess.call(
             f"docker-compose.exe -f {file_dir} up --build -d",
