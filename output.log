@@ -1,0 +1,61 @@
+#2 [telegrambot_database internal] load build definition from Dockerfile
+#2 transferring dockerfile: 32B done
+#2 DONE 0.0s
+
+#1 [telegrambot_telegrambot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#4 [telegrambot_database internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#3 [telegrambot_telegrambot internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#6 [telegrambot_database internal] load metadata for docker.io/library/postgres:10
+#6 DONE 0.8s
+
+#7 [telegrambot_database 1/2] FROM docker.io/library/postgres:10@sha256:15e423d6b28d240c080eab40b20f66086bab781a3caae84f4bf61a48a5066e96
+#7 DONE 0.0s
+
+#8 [telegrambot_database internal] load build context
+#8 transferring context: 36B done
+#8 DONE 0.0s
+
+#9 [telegrambot_database 2/2] COPY postgresql.conf /etc/postgresql
+#9 CACHED
+
+#5 [telegrambot_telegrambot internal] load metadata for docker.io/library/python:3.8-alpine3.12
+#5 DONE 0.9s
+
+#10 [telegrambot_telegrambot 1/4] FROM docker.io/library/python:3.8-alpine3.12@sha256:9d617fdd463125ba48e0c619719b4499e6829e5f99382283f32c44ec3580919b
+#10 DONE 0.0s
+
+#11 [telegrambot_telegrambot internal] load build context
+#11 transferring context: 13.67kB 0.0s done
+#11 DONE 0.0s
+
+#15 [telegrambot_database] exporting to image
+#15 exporting layers done
+#15 writing image sha256:e80a3531f3eec76f5aeb549d10b2524479b2fdd001479663a25b0acaa736dfcb
+#15 exporting layers done
+#15 writing image sha256:e80a3531f3eec76f5aeb549d10b2524479b2fdd001479663a25b0acaa736dfcb done
+#15 naming to docker.io/library/telegrambot_database done
+#15 writing image sha256:df8791fc20b84f38c43d613e3a765a0b4e4a59def74efbfe880e9c6cb55a2d10 done
+#15 naming to docker.io/library/telegrambot_telegrambot done
+#15 DONE 0.0s
+
+#12 [telegrambot_telegrambot 2/4] ADD . /app
+#12 CACHED
+
+#13 [telegrambot_telegrambot 3/4] WORKDIR /app
+#13 CACHED
+
+#14 [telegrambot_telegrambot 4/4] RUN apk update &&     apk add --no-cache postgresql-libs &&     apk add --no-cache --virtual .build-deps musl-dev postgresql-dev build-base &&     python3 -m pip install -r requirements.txt --no-cache-dir &&     apk --purge del .build-deps
+#14 CACHED
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Container postgres-db  Creating
+Error response from daemon: Conflict. The container name "/postgres-db" is already in use by container "eb1c128d8ccc5f04a41547edff4622cedd9cf9b548251e89ed616be445480f46". You have to remove (or rename) that container to be able to reuse that name.
