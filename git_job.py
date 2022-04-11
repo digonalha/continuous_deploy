@@ -14,14 +14,12 @@ file_dir = f"{repo_dir}/{file_name}"
 git = g.cmd.Git(repo_dir)
 msg = git.pull()
 
-print(msg)
+if msg != "Already up to date.":
+    with open(f"{repo_dir}/deploy-output.log", "w") as output:
+        output.write("\n")
+        output.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
+        output.write(f"\n*********\n\n{msg}\n\n")
 
-with open(f"{repo_dir}/deploy-output.log", "w") as output:
-    output.write("\n")
-    output.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
-    output.write(f"\n*********\n\n{msg}\n\n")
-
-    if msg != "Already up to date.":
         subprocess.call(
             f"docker-compose -f {file_dir} up --build -d",
             shell=True,
@@ -29,9 +27,9 @@ with open(f"{repo_dir}/deploy-output.log", "w") as output:
             stderr=output,
         )
 
-    subprocess.call(
-        f'docker rmi $(docker images -f "dangling=true" -q)',
-        shell=True,
-        stdout=output,
-        stderr=output,
-    )
+        subprocess.call(
+            f'docker rmi $(docker images -f "dangling=true" -q)',
+            shell=True,
+            stdout=output,
+            stderr=output,
+        )
