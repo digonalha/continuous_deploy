@@ -17,8 +17,9 @@ msg = git.pull()
 print(msg)
 
 with open(f"{repo_dir}/deploy-output.log", "w") as output:
-    output.write(datetime.now())
-    output.write("\n*********\n\n")
+    output.write("\n")
+    output.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
+    output.write(f"\n*********\n\n{msg}\n\n")
 
     if msg != "Already up to date.":
         subprocess.call(
