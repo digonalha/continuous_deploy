@@ -17,14 +17,12 @@ def main():
             settings.repository_path, log_path, docker_compose_file_path
         )
 
-        if update_result:
-            message = f"O deploy da aplicação <b>{repository_name}</b> no dispositivo <b>{settings.device_name}</b> foi finalizado! 🎉🎉🎉"
+        if not update_result:
+            message = f"O deploy da aplicação <b>{repository_name}</b> no dispositivo <b>{settings.device_name}</b> foi finalizado 🎉🎉🎉"
             telegram_service.send_file(message, log_path)
     except Exception as ex:
         telegram_service.send_message(
-            f"Ocorreu um erro ao tentar fazer o deploy da aplicação <b>{repository_name}</b> no dispositivo <b>{settings.device_name}</b>\n\n"
-            f"💀💀💀\n\n"
-            f"{ex}"
+            f"Ocorreu um erro ao tentar fazer o deploy da aplicação <b>{repository_name}</b> no dispositivo <b>{settings.device_name}</b> 💀💀💀"
         )
         raise
 
