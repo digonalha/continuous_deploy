@@ -16,7 +16,7 @@ def send_document(message: str, log_path: str, parse_mode: str = "HTML"):
     }
 
     res = requests.post(f"{API_URI}/sendDocument", data=data, files=files)
-    print(res)
+    print(res.text)
 
 
 def send_message(message: str, parse_mode: str = "HTML"):
@@ -27,4 +27,4 @@ def send_message(message: str, parse_mode: str = "HTML"):
     }
 
     res = requests.post(f"{API_URI}/sendMessage", data=data)
-    print(res)
+    print(res.text)
