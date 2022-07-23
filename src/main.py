@@ -17,13 +17,13 @@ def main():
             log_path,
             docker_compose_file_path,
             repository_name,
-            settings.computer_name,
+            settings.device_name,
         )
 
         if update_result:
             message = (
                 f"<b>Finalizando deploy da aplicação: {repository_name}</b>\n\n"
-                f"<i>Essa mensagem está sendo enviada pela pipeline de deploy no dispositivo <b>{settings.computer_name}<b></i>"
+                f"<i>Essa mensagem está sendo enviada pela pipeline de deploy no dispositivo <b>{settings.device_name}<b></i>"
             )
             telegram_service.send_file(message, log_path)
     except Exception as ex:
