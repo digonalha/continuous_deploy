@@ -1,8 +1,6 @@
 import git as git_module
 import subprocess
 from datetime import datetime
-from app.services import telegram_service
-from app.configs import settings
 
 
 def git_pull(repo_path: str) -> str:
@@ -25,11 +23,7 @@ def deploy(
     result_message = git_pull(repo_path)
 
     if result_message != "Already up to date.":
-        # telegram_service.send_message(
-        #     f"Iniciando deploy da aplicação <b>{repository_name}</b>..."
-        # )
-
-        with open(log_path, "w") as output:
+        with open(log_path, "w+") as output:
             output.write("\n")
             output.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
             output.write(f"\n*********\n\n{result_message}\n\n")

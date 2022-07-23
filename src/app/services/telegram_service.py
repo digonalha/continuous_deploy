@@ -10,17 +10,11 @@ def send_file(caption: str, file_path: str):
     if not is_valid():
         return
 
-    caption += f"\n\n<i>enviado pela pipeline <b>{settings.device_name.upper()}</b></i>"
-
     telegram_api.send_document(caption, file_path)
 
 
 def send_message(message: str):
     if not is_valid():
         return
-
-    message += (
-        f"\n\n\n<i>enviado pela pipeline - <b>{settings.device_name.upper()}</b></i>"
-    )
 
     telegram_api.send_message(message)
