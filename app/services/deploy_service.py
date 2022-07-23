@@ -1,6 +1,6 @@
-from datetime import datetime
 import git as git_module
 import subprocess
+from datetime import datetime
 
 
 def git_pull(repo_path: str) -> str:
@@ -41,3 +41,5 @@ def deploy(repo_path: str, log_path: str, docker_compose_file_path: str) -> bool
             )
 
         return True
+
+    return False
