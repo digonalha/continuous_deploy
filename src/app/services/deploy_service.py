@@ -25,9 +25,9 @@ def deploy(
     result_message = git_pull(repo_path)
 
     if result_message != "Already up to date.":
-        telegram_service.send_message(
-            f"Iniciando deploy da aplicação <b>{repository_name}</b>..."
-        )
+        # telegram_service.send_message(
+        #     f"Iniciando deploy da aplicação <b>{repository_name}</b>..."
+        # )
 
         with open(log_path, "w") as output:
             output.write("\n")

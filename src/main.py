@@ -11,7 +11,6 @@ log_path = f"{settings.repository_path}/deploy-output.log"
 def main():
     try:
         repository_name = deploy_service.get_repository_name(settings.repository_path)
-        repository_name = repository_name.upper()
 
         update_result = deploy_service.deploy(
             settings.repository_path,
@@ -22,7 +21,8 @@ def main():
 
         if update_result:
             message = (
-                f"Finalizando deploy da aplicação <b>{repository_name}</b>\n\n" f"🎉🎉🎉"
+                f"O deploy da aplicação <b>{repository_name}</b> foi finalizado!\n\n"
+                f"🎉🎉🎉"
             )
             telegram_service.send_file(message, log_path)
     except Exception as ex:
