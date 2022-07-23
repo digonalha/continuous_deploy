@@ -20,9 +20,11 @@ def is_valid():
 
 def load_variables():
     load_dotenv()
+    global repository_path, docker_compose_file_name, computer_name, sender_email, receiver_email, password, api_token, chat_id
 
     # DEPLOY SETTINGS
     repository_path = os.getenv("REPOSITORY_DIR")
+    print(repository_path)
     docker_compose_file_name = os.getenv("FILENAME")
     computer_name = os.getenv("COMPUTERNAME")
 
