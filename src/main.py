@@ -7,7 +7,7 @@ docker_compose_file_path = (
 )
 
 repository_name = deploy_service.get_repository_name(settings.repository_path)
-log_path = f"{settings.repository_path}\{repository_name}-{settings.device_name}-deploy-output.log"
+log_path = f"{settings.repository_path}\deploy-output.log"
 
 
 def main():
