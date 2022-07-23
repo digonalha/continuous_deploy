@@ -1,18 +1,20 @@
 from app.configs import settings
-from app.apis.telegram_api import send_document
+from app.apis import telegram_api
 
 
 def is_valid():
     return settings.chat_id and settings.api_token
 
 
-def send_file(repo_name: str, log_path: str):
+def send_file(caption: str, file_path: str):
     if not is_valid():
         return
 
-    message = (
-        f"<b>Finalizando deploy da aplicação: {repo_name}</b>\n\n"
-        f"<i>Essa mensagem está sendo enviada pela pipeline de deploy no dispositivo: {settings.computer_name}</i>"
-    )
+    telegram_api.send_document(caption, file_path)
 
-    send_document(message, log_path)
+
+def send_message(message: str):
+    if not is_valid():
+        return
+
+    telegram_api.send_message(message)

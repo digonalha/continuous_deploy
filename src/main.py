@@ -1,9 +1,6 @@
 # poc script p/ fazer deploy do projeto
-
-from app.services import email_service, telegram_service, deploy_service
 from app.configs import settings
-
-settings.load_variables()
+from app.services import telegram_service, deploy_service
 
 docker_compose_file_path = (
     f"{settings.repository_path}/{settings.docker_compose_file_name}"
@@ -12,15 +9,28 @@ log_path = f"{settings.repository_path}/deploy-output.log"
 
 
 def main():
-    update_result = deploy_service.deploy(
-        settings.repository_path, log_path, docker_compose_file_path
-    )
-
-    if update_result:
+    try:
         repository_name = deploy_service.get_repository_name(settings.repository_path)
 
-        email_service.send_email(repository_name, log_path)
-        telegram_service.send_file(repository_name, log_path)
+        update_result = deploy_service.deploy(
+            settings.repository_path,
+            log_path,
+            docker_compose_file_path,
+            repository_name,
+            settings.computer_name,
+        )
+
+        if update_result:
+            message = (
+                f"<b>Finalizando deploy da aplicação: {repository_name}</b>\n\n"
+                f"<i>Essa mensagem está sendo enviada pela pipeline de deploy no dispositivo <b>{settings.computer_name}<b></i>"
+            )
+            telegram_service.send_file(message, log_path)
+    except Exception as ex:
+        telegram_service.send_message(
+            f"<b>Um erro ocorreu ao tentar fazer o deploy da aplicação: {repository_name}</b>\n\nErro: {ex}"
+        )
+        raise
 
 
 if __name__ == "__main__":

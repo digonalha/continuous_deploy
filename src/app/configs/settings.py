@@ -38,3 +38,6 @@ def load_variables():
     chat_id = os.getenv("CHAT_ID")
 
     is_valid()
+
+
+load_variables()
