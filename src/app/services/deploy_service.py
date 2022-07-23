@@ -20,17 +20,13 @@ def get_repository_name(repo_path: str) -> str:
 
 
 def deploy(
-    repo_path: str,
-    log_path: str,
-    docker_compose_file_path: str,
-    repository_name: str,
-    pc_name: str,
+    repo_path: str, log_path: str, docker_compose_file_path: str, repository_name: str
 ) -> bool:
     result_message = git_pull(repo_path)
 
     if result_message != "Already up to date.":
         telegram_service.send_message(
-            f"Iniciando deploy da aplicação <b>{repository_name}</b> no dispotivo <b>{pc_name}</b>..."
+            f"Iniciando deploy da aplicação <b>{repository_name}</b>..."
         )
 
         with open(log_path, "w") as output:

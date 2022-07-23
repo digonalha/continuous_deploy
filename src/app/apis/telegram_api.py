@@ -15,7 +15,8 @@ def send_document(message: str, log_path: str, parse_mode: str = "HTML"):
         "document": open(log_path, "rb"),
     }
 
-    requests.post(f"{API_URI}/sendDocument", data=data, files=files)
+    res = requests.post(f"{API_URI}/sendDocument", data=data, files=files)
+    print(res)
 
 
 def send_message(message: str, parse_mode: str = "HTML"):
