@@ -17,7 +17,7 @@ def main():
             settings.repository_path, log_path, docker_compose_file_path
         )
 
-        if not update_result:
+        if update_result:
             message = f"O deploy da aplicação <b>{repository_name}</b> no dispositivo <b>{settings.device_name}</b> foi finalizado 🎉🎉🎉"
             telegram_service.send_file(message, log_path)
     except Exception as ex:
