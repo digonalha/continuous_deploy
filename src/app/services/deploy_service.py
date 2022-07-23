@@ -17,9 +17,7 @@ def get_repository_name(repo_path: str) -> str:
     return repository_name
 
 
-def deploy(
-    repo_path: str, log_path: str, docker_compose_file_path: str, repository_name: str
-) -> bool:
+def deploy(repo_path: str, log_path: str, docker_compose_file_path: str) -> bool:
     result_message = git_pull(repo_path)
 
     if result_message != "Already up to date.":

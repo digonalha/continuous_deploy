@@ -14,10 +14,7 @@ def main():
     try:
 
         update_result = deploy_service.deploy(
-            settings.repository_path,
-            log_path,
-            docker_compose_file_path,
-            repository_name,
+            settings.repository_path, log_path, docker_compose_file_path
         )
 
         if update_result:
