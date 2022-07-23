@@ -10,7 +10,7 @@ def send_file(repo_name: str, log_path: str):
     if not is_valid():
         return
 
-    message += (
+    message = (
         f"<b>Finalizando deploy da aplicação: {repo_name}</b>\n\n"
         f"<i>Essa mensagem está sendo enviada pela pipeline de deploy no dispositivo: {settings.computer_name}</i>"
     )

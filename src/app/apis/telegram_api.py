@@ -1,18 +1,19 @@
 import requests
 from app.configs import settings
 
-API_URI = f"https://api.telegram.org/bot{settings.api_token}"
-
 
 def send_document(message: str, log_path: str, parse_mode: str = "HTML"):
-    document = open(log_path, "rb")
-
     data = {
         "chat_id": settings.chat_id,
-        "text": message,
+        "caption": message,
         "parse_mode": parse_mode,
-        "document": document,
     }
 
-    res = requests.post(f"{API_URI}/sendDocument", data=data)
+    files = {
+        "document": open(log_path, "rb"),
+    }
+
+    api_uri = f"https://api.telegram.org/bot{settings.api_token}"
+
+    res = requests.post(f"{api_uri}/sendDocument", data=data, files=files)
     print(res)

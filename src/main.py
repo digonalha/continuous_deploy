@@ -18,6 +18,7 @@ def main():
 
     if update_result:
         repository_name = deploy_service.get_repository_name(settings.repository_path)
+
         email_service.send_email(repository_name, log_path)
         telegram_service.send_file(repository_name, log_path)
 
