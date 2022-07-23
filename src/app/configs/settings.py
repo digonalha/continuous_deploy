@@ -4,9 +4,6 @@ from dotenv import load_dotenv
 repository_path = ""
 docker_compose_file_name = ""
 device_name = ""
-sender_email = ""
-receiver_email = ""
-password = ""
 api_token = ""
 chat_id = ""
 
@@ -22,18 +19,12 @@ def is_valid():
 
 def load_variables():
     load_dotenv()
-    global repository_path, docker_compose_file_name, device_name, sender_email, receiver_email, password, api_token, chat_id
+    global repository_path, docker_compose_file_name, device_name, api_token, chat_id
 
     # DEPLOY SETTINGS
     repository_path = os.getenv("REPOSITORY_DIR")
-    print(repository_path)
     docker_compose_file_name = os.getenv("FILENAME")
     device_name = os.getenv("DEVICE_NAME")
-
-    # EMAIL RESPONSE
-    password = os.getenv("EMAIL_PASSWORD")
-    sender_email = os.getenv("EMAIL_SENDER")
-    receiver_email = os.getenv("EMAIL_RECEIVER")
 
     # TELEGRAM RESPONSE
     api_token = os.getenv("API_TOKEN")
