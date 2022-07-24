@@ -12,7 +12,6 @@ log_path = f"{settings.repository_path}/deploy-output.log"
 
 def main():
     try:
-
         update_result = deploy_service.deploy(
             settings.repository_path, log_path, docker_compose_file_path
         )
