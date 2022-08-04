@@ -20,5 +20,4 @@ def main():
         telegram_service.send_file(message, log_path)
 
 
-if __name__ == "__main__":
-    main()
+main()
